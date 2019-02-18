@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<title>Sign-up/Sign-in menu</title>
+<link rel="stylesheet" href="style.css" type='text/css'>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+
+<body>
+	<form method="post">
+		<div class="box">
+			<h1>Products</h1>
+
+			<button id="logIn" type="submit" class="btn">Log In</button>
+			<button type="button" class="btn2">Sign Up</button>
+		</div>
+		
+	</form>
+	
+	<form id="productForm">
+	</form>
+		
+	<script>
+		function validateEmail(email) {
+			var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+			return re.test(String(email).toLowerCase());
+		}
+
+		document.getElementById("logIn").addEventListener("click",(function(event) {
+							event.preventDefault();								
+								$.post("http://localhost:8080/GenericIOTInfrastructure/SignInServlet",JSON.stringify(result),function(data, status) {															
+									console.log("products");
+									/*var j = JSON.parse(data);
+										if (false == j.found){
+											alert("User is not registered.");
+										}else{
+											var a = j.products;
+											var text = "";
+											 
+											for (var i in a) 
+										     {
+												text += "<input type='checkbox' "+
+												"name='" + i +"' value='"+ a[i].product_name +"'>" +
+												a[i].product_name +"<br>";
+										     }										
+											document.getElementById("productForm").innerHTML = text;
+										}*/												
+								});
+						}));
+	</script>
+</body>
+</html>

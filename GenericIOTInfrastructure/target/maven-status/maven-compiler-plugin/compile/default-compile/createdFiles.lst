@@ -1,0 +1,16 @@
+HTTPCrud.class
+ProductServlet.class
+IOTServlet.class
+GatewayServer.class
+CommandFactory.class
+GatewayServer$RequestHandler.class
+SignInServlet.class
+IOTDevice.class
+GatewayServer$RequestHandler$1.class
+GatewayServer$2.class
+GatewayServer$1.class
+TcpCRUD.class
+SignUpServlet.class
+CRUD.class
+TCPUDPServer.class
+SQLCRUD.class

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<title>Sign-up/Sign-in menu</title>
+<link rel="stylesheet" href="style.css" type='text/css'>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+
+<body>
+	<form method="post" id="signInForm">
+		<div class="box">
+			<h1>Generic IOT infrastructure</h1>
+			<input type="email" id="email" name="email" placeholder="email"
+				class="email" /> <input type="password" id="password"
+				name="password" placeholder="password" class="email" />
+
+			<button id="logIn" type="submit" class="btn">Log In</button>
+			<button type="button" class="btn2"
+				onclick="location.href='sign_up.html'">Sign Up</button>
+		</div>
+		
+	</form>
+	<p id="p1">
+		Forgot your password? <a href="password.html" style="color: #f1c40f;">Click
+			Here!</a>
+	</p>
+	
+	<div>
+		<h1 id="title"> </h1>
+	</div>
+	<form id="productForm">	
+	</form>
+		
+		<form method="post" id="addProduct">
+		<br><br><br><br>
+		<div class="box3">
+			register product: <input type="text" id="pname" name="name" placeholder="product name"
+				class="email" /><br>
+				<button id="newProduct" type="submit" class="btn">add item</button>	
+		</div>
+	</form>
+	
+	<script>
+	
+	var company_name;
+	var j;	
+	document.getElementById("addProduct").style.visibility="hidden";
+	
+		function validateEmail(email) {
+			var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+			return re.test(String(email).toLowerCase());
+		}
+
+		document.getElementById("logIn").addEventListener("click",(function(event) {
+							event.preventDefault();
+							var result = {
+								email : document.getElementById("email").value,
+								password : document.getElementById("password").value,
+							};
+
+							let validEmail = validateEmail(result.email);
+							if (validEmail == false) {
+								window.alert("invalid email");
+							} else {								
+								$.post("http://localhost:8080/GenericIOTInfrastructure/SignInServlet",JSON.stringify(result),function(data, status) {					
+									j = JSON.parse(data);
+									if (false == j.found){
+										alert("User is not registered.");
+									}else{
+										company_name = j.company;
+										document.getElementById("signInForm").style.visibility = "hidden";
+										document.getElementById("p1").style.visibility = "hidden";
+										displayProducts();
+									}											
+							});
+							}
+						}));
+
+	function deleteItems(){
+		var allVals = {items : []};  
+				$(".checkDone:checked").each(function() {
+					var obj = {id : $(this).attr("id")};
+					allVals.items.push(obj);
+					$(this).parent().remove();
+				});
+						
+		$.ajax({
+		    url: "http://localhost:8080/GenericIOTInfrastructure/ProductServlet?" +  $.param({param : JSON.stringify(allVals)}),
+		    type: "DELETE",
+		    success: function(result){
+		        alert("items deleted.");
+		    }
+		});
+	}
+	
+	function addItem(){
+		if (document.getElementById("addProduct").style.visibility == "hidden"){
+			document.getElementById("addProduct").style.visibility="visible";
+		}
+		else{
+			document.getElementById("addProduct").style.visibility="hidden";
+		}
+		
+		document.getElementById("newProduct").addEventListener("click",(function(event) {
+			event.preventDefault();
+			var item = {
+				pname : document.getElementById("pname").value,
+				company : company_name
+			};
+			
+			$.post("http://localhost:8080/GenericIOTInfrastructure/ProductServlet",JSON.stringify(item), function(data, status) {
+					alert("new product registered.");
+					document.getElementById("pname").value = "";				
+				});
+		}));
+	}
+	
+	function displayProducts(){
+		var a = j.products;
+		var text = "<div id='outsideBox'>";
+		
+		for (var i in a)
+	     {
+			text += "<div class='di'><input type='checkbox' class='checkDone' id='"+ a[i].id +
+			"' name='" + i +"' value='"+ a[i].product_name +"'>" +
+			a[i].product_name +"</div> <br>";
+	     }
+		
+		text += "<br><button type='button' id='removeItems' class='btn' onclick=deleteItems()>Remove products</button> </div>";
+		text += "<button type='button' class='btn' onclick='addItem()'>Add Product</button> </div>";
+		
+		document.getElementById("title").innerHTML = company_name + "'s products";
+		document.getElementById("productForm").innerHTML = text;
+	}
+	
+	</script>
+</body>
+</html>

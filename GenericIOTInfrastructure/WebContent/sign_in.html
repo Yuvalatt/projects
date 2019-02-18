@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title> Sign-up/Sign-in menu </title>
+	<link rel="stylesheet" href="style.css" type='text/css'>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+
+<body>
+	<form method="post" id="signInForm">
+		<div class="box">
+			<h1>Generic IOT infrastructure</h1>
+			<input type="email" id="email" name="email" placeholder="email" class="info"/> 
+			<input type="password" id="password" name="password" placeholder="password" class="info"/>
+			<button id="logIn" type="submit" class="btn">Log In</button>
+			<button type="button" class="btn2" onclick="location.href='sign_up.html'">Sign Up</button>
+		</div>		
+	</form>
+	
+	<p id="p1">
+		Forgot your password? <a href="password.html" style="color: #f1c40f;">Click Here!</a>
+	</p>
+	
+	<div style="overflow-x:auto;" id="productsBox" >
+		<h1 id="title"> </h1>
+		
+		<table id="productTable"> 
+		</table>
+		
+		<button type="button" id="removeItems" onclick=deleteItems() class="btn3"> Remove products </button>
+		<button  id="addItem" type="button" onclick=addItem() class="btn3"> Add Product </button>
+	</div>
+	
+	<form method="post" id="addProduct">
+		<div class="box3">
+			<input type="text" id="pname" name="name" placeholder="product name" class="info" />
+				<button id="newProduct" type="submit" class="btn"> add item </button>			
+		</div>
+	</form>
+	
+<script>
+	var company_name;
+	var j;	
+	document.getElementById("addProduct").style.visibility="hidden";
+	document.getElementById("removeItems").style.visibility="hidden";
+	document.getElementById("addItem").style.visibility="hidden";
+	
+	function validateEmail(email) {
+		var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+		return re.test(String(email).toLowerCase());
+	}
+	
+	document.getElementById("logIn").addEventListener("click",(function(event) {
+		event.preventDefault();
+		var result = {
+			email : document.getElementById("email").value,
+			password : document.getElementById("password").value,
+		};
+
+		let validEmail = validateEmail(result.email);
+		if (validEmail == false) {
+			window.alert("invalid email");
+		} else {								
+			$.post("http://localhost:8080/GenericIOTInfrastructure/SignInServlet",JSON.stringify(result),function(data, status) {					
+				j = JSON.parse(data);
+				if (false == j.found){
+					alert("User is not registered.");
+				}else{
+					company_name = j.company;
+					document.getElementById("signInForm").remove();
+					document.getElementById("p1").remove();
+					displayProducts();
+				}											
+			});
+		}
+	}));
+
+	function deleteItems(){
+		var allVals = {items : []};  
+			$(".checkDone:checked").each(function() {
+				var obj = {id : $(this).attr("id")};
+				allVals.items.push(obj);
+				$(this).parent().remove();
+			});
+				
+		if (allVals.items.length > 0){					
+			$.ajax({
+			    url: "http://localhost:8080/GenericIOTInfrastructure/ProductServlet?" +  $.param({param : JSON.stringify(allVals)}),
+			    type: "DELETE",
+			    success: function(result){
+			        alert("items deleted.");
+			    }
+			});
+		}
+		else{
+			alert("No items were chosen.");
+		}
+	}
+	
+	function addItem(){
+		if (document.getElementById("addProduct").style.visibility == "hidden"){
+			document.getElementById("addProduct").style.visibility="visible";
+		}
+		else{
+			document.getElementById("addProduct").style.visibility="hidden";
+		}
+		
+		document.getElementById("newProduct").addEventListener("click",(function(event) {
+			event.preventDefault();
+			var item = {
+				pname : document.getElementById("pname").value,
+				company : company_name
+			};
+					    
+			$.post("http://localhost:8080/GenericIOTInfrastructure/ProductServlet",JSON.stringify(item), function(data, status) {
+				var j = JSON.parse(data);
+				if (false == j.success){
+					alert("Product is already registered.");
+				}
+				else{
+					var table = document.getElementById("productTable");
+					var row = table.insertRow(table.rows.length);
+				    var cell = row.insertCell(0);
+				    cell.innerHTML = "<input type='checkbox' class='checkDone' value='"+ item.pname +"' + id='row'>"
+				    + item.pname;
+					alert("new product registered.");
+					document.getElementById("row").setAttribute("id", "'"+j.id+"'");
+					document.getElementById("pname").value = "";
+				}				
+				});
+		}));
+	}
+	
+	function displayProducts(){
+		var a = j.products;
+		document.getElementById("title").innerHTML = company_name + "'s products";
+		var table = document.getElementById("productTable");
+		
+		for (var i in a)
+	     {
+			var row = table.insertRow(i);
+		    var cell = row.insertCell(0);
+		    cell.innerHTML = "<input type='checkbox' class='checkDone' id='"+ a[i].id+ "' name='" + i +"' value='"+ a[i].product_name +"'>"
+		    + a[i].product_name;
+	     }
+
+		document.getElementById("removeItems").style.visibility="visible";
+		document.getElementById("addItem").style.visibility="visible";
+	}
+	
+	/*$(document).ready(function() {
+	    $(document).on("click", "#productTable tbody tr", function() {
+	    	if ($(this).find('td').css('background-color') == "white"){
+	    		$(this).find('td').css("background-color", "#909090");
+	    		//$(this).find('td').find('checkDone').is(':checked');
+	    	}
+	    	else{
+	    		$(this).find('td').css("background-color", "white");
+	    	}   	
+	    });
+	});*/
+		</script>
+	</body>
+</html>

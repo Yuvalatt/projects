@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Sign-up form</title>
+	<link rel="stylesheet" href="style.css" type='text/css'>
+	<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+</head>
+
+<body>
+	<form method="post">
+		<div class="box2">
+			<h1>Register Company</h1>
+			<input type="text" id="company" name="company" placeholder="company name" class="info"/> <br> 
+			<input type="email" id="email" name="email" placeholder="email" class="info"/> <br>
+			 <input type="password" id="password1" name="password1" placeholder="password" class="info"/> <br>
+			<input type="password" id="password2" name="password2" placeholder="verify password" class="info"/> <br>
+			<button id="signUp" type="submit" class="btn">Submit</button>
+		</div>
+	</form>
+
+<script>	
+		function validateEmail(email) {
+			var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+			return re.test(String(email).toLowerCase());
+		}
+
+		document.getElementById("signUp").addEventListener("click",(function(event) {
+							event.preventDefault();
+							var obj = {
+								company : document.getElementById("company").value,
+								email : document.getElementById("email").value,
+								password : document.getElementById("password1").value,
+							};
+							let validEmail = validateEmail(obj.email);
+							let password2 = document.getElementById("password2").value;
+							
+							if (validEmail == false) {
+								window.alert("invalid email");
+							}
+							if (obj.password != password2) {
+								window.alert("invalid password");
+							} else {
+								$.post("http://localhost:8080/GenericIOTInfrastructure/SignUpServlet",JSON.stringify(obj), function(data, status) {
+									if (data !== null){
+										var j = JSON.parse(data);
+										if (true == j.found){
+											alert("Company is already registered.");
+										}
+									}
+								});
+							}
+						}));
+	</script>
+</body>
+</html>
