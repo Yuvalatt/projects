@@ -1,0 +1,476 @@
+.navigator{
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    background-color: rgba(255, 255, 255, 0.9);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    position: fixed;
+    width: 100%;
+    top: 0;
+}
+
+ul.horizon{
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 706px;
+    height: 27px;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.8;
+    letter-spacing: 0.7px;
+    text-align: right;
+    color: #222222;
+}
+
+ul.tim-horizon{
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 706px;
+    height: 200px;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.8;
+    letter-spacing: 0.7px;
+    text-align: right;
+    color: #222222;
+}
+
+ul#articles-list{
+    list-style-type: none;
+}
+
+ul#products{
+    list-style-type: none;
+    margin: auto;
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-left: 0;
+}
+
+.product-wrapper{
+    margin: 10px 0;
+    width: 680px;
+    height: 200px;
+    border-radius: 3px;
+    border: 1px solid #e2e2e2;
+    background-color: #ffffff;
+}
+
+.product-images{
+    width: 338px;
+    height: 190px;
+}
+
+a{
+    color: inherit;
+    text-decoration: none;
+    outline: 0;
+}
+
+.logo{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.tim{
+    width: 210px;
+    height: 235px;
+    border-radius: 3px;
+    border: 1px solid #e2e2e2;
+    background-color: #ffffff;
+}
+
+.logo-text{
+    width: 152px;
+    height: 34px;
+    color: #222222;
+    font-family: "Abhaya Libre";
+    font-size: 29px;
+    font-weight: 700;
+    line-height: 30px;
+    /* Text style for "&" */
+    font-family: "Montserrat Extra Light";
+    font-size: 20px;
+    padding-top: 10px;
+}
+
+.categories-button{
+    /*width: 70px;*/
+    padding: 5px 10px;
+    height: 30px;
+    border-radius: 3px;
+    border: 1px solid #e2e2e2;
+    background-color: #ffffff;
+    /*Text style*/
+    color: #000000;
+    font-family: "Montserrat Medium";
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.main{
+    display: flex;
+    flex-direction: row;
+}
+
+.articles{
+    border-radius: 3px;
+    background-color: #f6f6f6;
+    display: flex;
+    flex-direction: column;
+    margin-right: 20px;
+    margin-leftt: 20px;
+    height: 600px;
+}
+
+.articles-title{
+    width: 250px;
+    height: 25px;
+    color: rgba(34, 34, 34, 0.87);
+    font-family: "Abhaya Libre Extra Bold";
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 24px;
+    padding: 15px 0 0 10px;
+}
+
+.article-wrapper{
+    color: rgba(34, 34, 34, 0.87);
+    font-family: "Abhaya Libre Extra Bold";
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 18px;
+    /*padding: 5px 0;*/
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+}
+
+img.article-wrapper{
+    width: 182px;
+    height: 92px;
+    position: fixed;
+}
+
+.read-more{
+    width: 66px;
+    height: 16px;
+    color: #ff6a56;
+    font-family: Montserrat;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.promoted-product{
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+    border: 1px solid #e2e2e2;
+    background-color: #ffffff;
+}
+
+.product-info{
+    padding: 10px 0;
+    list-style-type: none;
+}
+
+.our-score{
+    width: 57px;
+    height: 20px;
+    color: #000000;
+    font-family: Montserrat;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.22px;
+    line-height: 18px;
+}
+
+.score-value{
+    width: 41px;
+    height: 30px;
+    color: #000000;
+    font-family: Montserrat;
+    font-size: 25px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.promoted-li{
+    background: url('img/check.png') no-repeat left 11px;
+    padding-left: 12px;
+    display: block;
+    width: 237px;
+    height: 18px;
+    color: rgba(34, 34, 34, 0.87);
+    font-family: Montserrat;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.product-links{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding-bottom: 10px;
+}
+
+.product-headers{
+    padding: 10px 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.read-review{
+    width: 91px;
+    height: 18px;
+    color: #ff6a56;
+    font-family: Montserrat;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.order-now-button{
+    width: 130px;
+    height: 40px;
+    border-radius: 3px;
+    background-image: linear-gradient(180deg, #ff8373 0%, #ff6a56 100%);
+    margin-top: -20px;
+}
+
+.tim-button{
+    width: 130px;
+    height: 40px;
+    border-radius: 3px;
+    background-image: linear-gradient(180deg, #ff8373 0%, #ff6a56 100%);
+    margin-top: -20px;
+}
+
+.tim-logo{
+    alignment: center;
+    padding-left: 35px;
+    padding-bottom: 5px;
+}
+
+.order-now-button-text{
+    width: 101px;
+    height: 22px;
+    color: #ffffff;
+    font-family: "Montserrat Medium";
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.meal-delivery-services{
+    font-family: "Abhaya Libre Extra Bold";
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 30px;
+}
+
+.top-text{
+    width: 600px;
+    height: 105px;
+    color: #000000;
+    font-family: "Montserrat Medium";
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 35px;
+    background-color: transparent;
+}
+
+.logo1{
+    height: 65px;
+}
+
+.product-box{
+    display: flex;
+    flex-direction: row;
+}
+
+.mobile-product-box{
+    display: flex;
+    flex-direction: column;
+}
+
+.p-data{
+    display: flex;
+    flex-direction: column;
+}
+
+img {
+    object-fit: contain;
+}
+
+p{
+    color: #222222;
+    background-color: transparent;
+    font-family: "Montserrat Light";
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 22px;
+}
+
+.title2{
+    font-family: AbhayaLibre;
+    font-size: 24px;
+    font-weight: 800;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 0.92;
+    letter-spacing: normal;
+    color: #222222;
+}
+
+.title{
+    font-family: AbhayaLibre;
+    font-size: 20px;
+    font-weight: 800;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.1;
+    letter-spacing: normal;
+    color: rgba(34, 34, 34, 0.87);
+}
+
+.tim-title{
+    color: #222222;
+    font-family: "Abhaya Libre Extra Bold";
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 22px;
+}
+
+.best-meal-delivery-services{
+    color: #000000;
+    font-family: "Abhaya Libre";
+    font-size: 55px;
+    font-weight: 700;
+    line-height: 60px;
+
+}
+
+.tim-products{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.tim-product-wrapper{
+    width: 210px;
+    height: 235px;
+    border-radius: 3px;
+    border: 1px solid #e2e2e2;
+    background-color: #ffffff;
+}
+
+.tim-product-images{
+    width: 200px;
+    height: 113px;
+}
+
+.bottom-rectangle{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.copyright{
+    width: 227px;
+    height: 66px;
+}
+
+.bottom-data{
+    width: 563px;
+    height: 66px;
+    background-color: #f7f7f7;
+}
+
+.bottom-rectangle-child1, .bottom-rectangle-child2{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* in Mobile version */
+.best-meal-delivery{
+    margin-top: 70px;
+    background: url('img/md-chart-all-desktop-copy-2.png')no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.products-container{
+    flex-grow: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: auto;
+}
+
+.articles-container{
+    border-radius: 3px;
+    background-color: #f6f6f6;
+}
+
+ul#mobile-products{
+    list-style-type: none;
+}
+
+p.article-text{
+    width: 150px;
+    height: 36px;
+    color: rgba(34, 34, 34, 0.87);
+    font-family: "Abhaya Libre Extra Bold";
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 18px;
+}
+
+#mobile-icon{
+    display: none;
+    width: 18px;
+    height: 17px;
+    object-fit: contain;
+}
+
+.mobile-products-container{
+    display: none;
+}
+
+@media screen and (max-width: 337px) {
+    .navigator, .links, .logo, .articles, .delivery-meals, .tim-favorites, .products-container,
+    .info, .bottom-rectangle, .top-text {
+        display: none;
+    }
+
+    #mobile-icon, .mobile-products-container{
+        display: block;
+    }
+
+    .best-meal-delivery{
+        margin-top: 0;
+        background: url('img/shef-mobile.png')no-repeat;
+        width: 375px;
+        height: 117px;
+        background-size:cover;
+    }
+    .best-meal-delivery-services{
+        color: #ffffff;
+    }
+}
