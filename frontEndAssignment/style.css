@@ -1,7 +1,37 @@
+@font-face {
+    font-family: "Montserrat Medium";
+    src:url("fonts/Montserrat-Medium.otf");
+}
+
+@font-face {
+    font-family: "Montserrat";
+    src:url("fonts/Montserrat-Regular.otf");
+}
+
+@font-face {
+    font-family: "Montserrat Light";
+    src:url("fonts/Montserrat-Light.otf");
+}
+
+@font-face {
+    font-family: "Montserrat Extra Light";
+    src:url("fonts/Montserrat-ExtraLight.otf");
+}
+
+@font-face {
+    font-family: "Abhaya Libre";
+    src:url("fonts/abhaya/AbhayaLibre-Regular.ttf");
+}
+
+@font-face {
+    font-family: "Abhaya Libre Extra Bold";
+    src:url("fonts/abhaya/AbhayaLibre-ExtraBold.ttf");
+}
+
 .navigator{
     overflow: hidden;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -58,6 +88,7 @@ ul#products{
     flex-direction: column;
     justify-content: space-between;
     padding-left: 0;
+    padding-right: 15px;
 }
 
 .product-wrapper{
@@ -325,7 +356,7 @@ p{
 }
 
 .title2{
-    font-family: AbhayaLibre;
+    font-family: "Abhaya Libre Extra Bold";
     font-size: 24px;
     font-weight: 800;
     font-style: normal;
@@ -336,7 +367,7 @@ p{
 }
 
 .title{
-    font-family: AbhayaLibre;
+    font-family: "Abhaya Libre Extra Bold";
     font-size: 20px;
     font-weight: 800;
     font-style: normal;
@@ -391,12 +422,22 @@ p{
 .copyright{
     width: 227px;
     height: 66px;
+    color: #000000;
+    font-family: "Montserrat Light";
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 22px;
 }
 
 .bottom-data{
     width: 563px;
     height: 66px;
     background-color: #f7f7f7;
+    color: #000000;
+    font-family: "Montserrat Light";
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 22px;
 }
 
 .bottom-rectangle-child1, .bottom-rectangle-child2{
@@ -444,9 +485,9 @@ p.article-text{
 
 #mobile-icon{
     display: none;
-    width: 18px;
-    height: 17px;
-    object-fit: contain;
+    width: 300px;
+    height: 280px;
+    object-fit: cover;
 }
 
 .mobile-products-container{
@@ -459,7 +500,7 @@ p.article-text{
         display: none;
     }
 
-    #mobile-icon, .mobile-products-container{
+   .mobile-products-container{
         display: block;
     }
 
@@ -472,5 +513,12 @@ p.article-text{
     }
     .best-meal-delivery-services{
         color: #ffffff;
+    }
+
+    #mobile-icon{
+        position: relative;
+        top: -300px;
+        left: -300px;
+        object-fit: contain;
     }
 }
